@@ -124,6 +124,8 @@ lib.init bootStages
                 buildPackages.zig.cc
               else if crossSystem.useArocc or false then
                 buildPackages.arocc
+              else if crossSystem.useCosmopolitan or false then
+                buildPackages.cosmopolitan
               else
                 buildPackages.gcc;
 

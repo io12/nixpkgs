@@ -149,6 +149,8 @@ let
               "avrlibc"
             else if final.isGhcjs then
               null
+            else if final.isCosmopolitan then
+              "cosmopolitan"
             else if final.isNone then
               "newlib"
             # TODO(@Ericson2314) think more about other operating systems

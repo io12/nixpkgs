@@ -26,7 +26,9 @@
       false
   ),
   useOpenSSL ? !isMinimalBuild,
-  useSharedLibraries ? (!isMinimalBuild && !stdenv.hostPlatform.isCygwin),
+  useSharedLibraries ? (
+    !isMinimalBuild && !stdenv.hostPlatform.isCygwin && !stdenv.hostPlatform.isCosmopolitan
+  ),
   uiToolkits ? [ ], # can contain "ncurses" and/or "qt5"
   buildDocs ? !(isMinimalBuild || (uiToolkits == [ ])),
   libsForQt5,

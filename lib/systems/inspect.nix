@@ -391,6 +391,9 @@ rec {
         uclibceabi
         uclibceabihf
       ];
+    isCosmopolitan = {
+      abi = abis.cosmo;
+    };
 
     isEfi = [
       {

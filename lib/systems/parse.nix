@@ -740,6 +740,8 @@ rec {
     };
     uclibc = { };
 
+    cosmo = { };
+
     unknown = { };
   };
 

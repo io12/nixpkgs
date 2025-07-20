@@ -1,0 +1,42 @@
+--- binutils-2.35.2/opcodes/sysdep.h	2023-09-21 16:36:33.171991187 +0000
++++ binutils-2.35.2/opcodes/sysdep.h.new	2023-09-21 16:36:03.004941735 +0000
+@@ -62,7 +62,7 @@
+    It is faster than setjmp/longjmp on systems where the signal mask is
+    saved.  */
+ 
+-#if defined(HAVE_SIGSETJMP)
++#if 0 && defined(HAVE_SIGSETJMP)
+ #define OPCODES_SIGJMP_BUF		sigjmp_buf
+ #define OPCODES_SIGSETJMP(buf)		sigsetjmp((buf), 0)
+ #define OPCODES_SIGLONGJMP(buf,val)	siglongjmp((buf), (val))
+--- binutils-2.35.2/config.sub	2021-01-30 08:38:03.000000000 +0000
++++ binutils-2.35.2/config2.sub	2023-10-12 19:29:26.453824477 +0000
+@@ -132,7 +132,7 @@
+ 		maybe_os=$field2-$field3
+ 		case $maybe_os in
+ 			nto-qnx* | linux-gnu* | linux-android* | linux-dietlibc \
+-			| linux-newlib* | linux-musl* | linux-uclibc* | uclinux-uclibc* \
++			| linux-newlib* | linux-cosmo* | linux-musl* | linux-uclibc* | uclinux-uclibc* \
+ 			| uclinux-gnu* | kfreebsd*-gnu* | knetbsd*-gnu* | netbsd*-gnu* \
+ 			| netbsd*-eabi* | kopensolaris*-gnu* | cloudabi*-eabi* \
+ 			| storm-chaos* | os2-emx* | rtmk-nova*)
+@@ -1355,7 +1355,7 @@
+ 	     | chorusrdb* | cegcc* | glidix* \
+ 	     | cygwin* | msys* | pe* | moss* | proelf* | rtems* \
+ 	     | midipix* | mingw32* | mingw64* | linux-gnu* | linux-android* \
+-	     | linux-newlib* | linux-musl* | linux-uclibc* \
++	     | linux-newlib* | linux-cosmo* | linux-musl* | linux-uclibc* \
+ 	     | uxpv* | beos* | mpeix* | udk* | moxiebox* \
+ 	     | interix* | uwin* | mks* | rhapsody* | darwin* \
+ 	     | openstep* | oskit* | conix* | pw32* | nonstopux* \
+--- -	2023-12-24 08:04:21.569201043 +0000
++++ binutils-2.35.2/bfd/peicode.h	2021-01-30 08:38:03.000000000 +0000
+@@ -1484,7 +1484,7 @@
+       if (opthdr == NULL)
+ 	return NULL;
+       if (amt > opt_hdr_size)
+-	memset (opthdr + opt_hdr_size, 0, amt - opt_hdr_size);
++	memset ((char *)opthdr + opt_hdr_size, 0, amt - opt_hdr_size);
+ 
+       bfd_set_error (bfd_error_no_error);
+       bfd_coff_swap_aouthdr_in (abfd, opthdr, & internal_a);

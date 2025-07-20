@@ -1,0 +1,16 @@
+# export INSTALL=x86_64-unknown-cosmo-install
+export ADDR2LINE=x86_64-unknown-cosmo-addr2line
+export AR=x86_64-unknown-cosmo-ar
+export AS=x86_64-unknown-cosmo-as
+export CC=x86_64-unknown-cosmo-gcc
+export CC_FOR_BUILD=$CC
+export CXX=x86_64-unknown-cosmo-c++
+export CXX_FOR_BUILD=$CXX
+export LD=x86_64-unknown-cosmo-gcc
+export NM=x86_64-unknown-cosmo-nm
+export OBJCOPY=x86_64-unknown-cosmo-objcopy
+export OBJDUMP=x86_64-unknown-cosmo-objdump
+export RANLIB=x86_64-linux-cosmo-ranlib
+export READELF=x86_64-unknown-cosmo-readelf
+export SIZE=x86_64-linux-cosmo-size
+export STRIP=x86_64-unknown-cosmo-strip

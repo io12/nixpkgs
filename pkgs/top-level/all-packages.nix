@@ -8155,6 +8155,8 @@ with pkgs;
       wasilibc
     else if libc == "relibc" then
       relibc
+    else if libc == "cosmopolitan" then
+      buildPackages.cosmopolitan
     else if name == "llvm" then
       llvmPackages_20.libc
     else

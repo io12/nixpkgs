@@ -124,4 +124,19 @@ self: super: {
       )
     ] ++ overlays;
   };
+
+  pkgsCosmopolitan = nixpkgsFun {
+    overlays = [
+      (self': super': {
+        pkgsCosmopolitan = super';
+      })
+    ] ++ overlays;
+    crossSystem = stdenv.hostPlatform // {
+      useCosmopolitan = true;
+      isCosmopolitan = true;
+      isStatic = true;
+      isLinux = false;
+      config = "x86_64-linux-musl";
+    };
+  };
 }

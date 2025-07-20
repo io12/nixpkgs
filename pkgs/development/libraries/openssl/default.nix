@@ -213,6 +213,18 @@ let
         # This introduces a reference to the CTLOG_FILE which is undesired when
         # trying to build binaries statically.
         ++ lib.optional static "no-ct"
+        # From superconfigure
+        ++ lib.optionals stdenv.hostPlatform.isCosmopolitan [
+          "no-shared"
+          "no-asm"
+          "no-dso"
+          "no-dynamic-engine"
+          "no-engine"
+          "no-pic"
+          "no-autoalginit"
+          "no-autoerrinit"
+          "--with-rand-seed=getrandom"
+        ]
         ++ lib.optional withZlib "zlib"
         # /dev/crypto support has been dropped in OpenBSD 5.7.
         #
@@ -273,7 +285,7 @@ let
 
         ''
         +
-          lib.optionalString (!stdenv.hostPlatform.isWindows)
+          lib.optionalString (!stdenv.hostPlatform.isWindows && !stdenv.hostPlatform.isCosmopolitan)
             # makeWrapper is broken for windows cross (https://github.com/NixOS/nixpkgs/issues/120726)
             ''
               # c_rehash is a legacy perl script with the same functionality
